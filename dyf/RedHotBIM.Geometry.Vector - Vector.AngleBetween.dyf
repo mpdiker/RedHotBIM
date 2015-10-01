@@ -1,0 +1,59 @@
+<Workspace Version="0.8.2.2150" X="-192.8" Y="-68" zoom="1" Name="RHB Vector.AngleBetween" ID="8587b978-70a8-4c72-907b-c68cdaddf25c" Description="Angle Between Two Vectors" Category="RedHotBIM.Geometry.Vector">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Math.PI" resolvedName="DSCore.Math" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Vector" resolvedName="Autodesk.DesignScript.Geometry.Vector" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="6cfff7c5-f6d9-4f2f-a38a-3707f409055f" type="Dynamo.Nodes.Symbol" nickname="Input" x="292" y="292.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="vectorA : Vector" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="0cbb5dec-3c81-42bb-b6cb-52e7257f03c5" type="Dynamo.Nodes.Symbol" nickname="Input" x="292" y="362.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="vectorB : Vector" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="b7ddb8e8-a720-4d26-8ca3-457ae012248a" type="Dynamo.Nodes.Output" nickname="Output" x="990.4" y="282" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Angle (degree)" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="4f6eee8a-7bab-4dcf-ac55-fe24fb8664fb" type="Dynamo.Nodes.Output" nickname="Output" x="999.2" y="396.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Angle (radian)" />
+    </Dynamo.Nodes.Output>
+    <DSIronPythonNode.PythonNode guid="237f1834-462b-4132-84e1-70b10497fe35" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="496" y="305.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+import math
+
+def dotproduct(v1, v2):
+	v1e = [v1.X, v1.Y, v1.Z]
+	v2e = [v2.X, v2.Y, v2.Z]
+	return sum((a*b) for a, b in zip(v1e, v2e))
+
+def lengthV(v):
+	return math.sqrt(dotproduct(v, v))
+
+def angleBetweenVectors(v1, v2):
+	return math.acos(dotproduct(v1, v2) / (lengthV(v1) * lengthV(v2)))
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+v1 = UnwrapElement(IN[0])
+v2 = UnwrapElement(IN[1])
+#Assign your output to the OUT variable
+OUT = angleBetweenVectors(v1, v2)</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="256d59a4-6409-42dc-9e97-c211ea7e6255" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="658.4" y="285.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="180.0 * radian / Math.PI;" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="6cfff7c5-f6d9-4f2f-a38a-3707f409055f" start_index="0" end="237f1834-462b-4132-84e1-70b10497fe35" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="0cbb5dec-3c81-42bb-b6cb-52e7257f03c5" start_index="0" end="237f1834-462b-4132-84e1-70b10497fe35" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="237f1834-462b-4132-84e1-70b10497fe35" start_index="0" end="4f6eee8a-7bab-4dcf-ac55-fe24fb8664fb" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="237f1834-462b-4132-84e1-70b10497fe35" start_index="0" end="256d59a4-6409-42dc-9e97-c211ea7e6255" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="256d59a4-6409-42dc-9e97-c211ea7e6255" start_index="0" end="b7ddb8e8-a720-4d26-8ca3-457ae012248a" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

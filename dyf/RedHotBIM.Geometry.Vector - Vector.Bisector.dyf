@@ -1,0 +1,30 @@
+<Workspace Version="0.8.2.2150" X="-196.314" Y="25.424" zoom="0.8425" Name="RHB Vector.Bisector" ID="8cccb2a8-9dfa-40fa-b790-03658aec9866" Description="Normalized Vector of Angle Bisector" Category="RedHotBIM.Geometry.Vector">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Line" resolvedName="Autodesk.DesignScript.Geometry.Line" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Vector" resolvedName="Autodesk.DesignScript.Geometry.Vector" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="11321e7e-6b90-4a5a-99db-e71b964117c9" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="549.200000000002" y="201.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="ptOr = Point.Origin();&#xA;pt1 = ptOr.Translate(vectorA,1);&#xA;pt2 = ptOr.Translate(vectorB,1);&#xA;ptMid = Line.ByStartPointEndPoint(pt1,pt2).PointAtParameter(0.5);&#xA;vec = Vector.ByTwoPoints(ptOr, ptMid).Normalized();" ShouldFocus="false" />
+    <Dynamo.Nodes.Symbol guid="7f5227c1-b793-46d2-816a-c43b8869b3f8" type="Dynamo.Nodes.Symbol" nickname="Input" x="272.8" y="195.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="vectorA : Vector" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="cc943bb7-e4ea-4b47-a8d1-350fa3542271" type="Dynamo.Nodes.Symbol" nickname="Input" x="273.6" y="269.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="vectorB : Vector" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="f8e40ffe-a4bd-40bf-b45a-64dd502b801e" type="Dynamo.Nodes.Output" nickname="Output" x="1276" y="278.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Bisector" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="11321e7e-6b90-4a5a-99db-e71b964117c9" start_index="4" end="f8e40ffe-a4bd-40bf-b45a-64dd502b801e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7f5227c1-b793-46d2-816a-c43b8869b3f8" start_index="0" end="11321e7e-6b90-4a5a-99db-e71b964117c9" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="cc943bb7-e4ea-4b47-a8d1-350fa3542271" start_index="0" end="11321e7e-6b90-4a5a-99db-e71b964117c9" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

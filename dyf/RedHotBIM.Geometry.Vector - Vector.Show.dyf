@@ -1,0 +1,72 @@
+<Workspace Version="0.8.2.2392" X="405.398906776867" Y="128.451543762429" zoom="0.545143755203202" Name="RHB Vector.Show" Description="Show Vector" ID="fa486430-9b68-4eba-983e-24e39d8a994c" Category="RedHotBIM.Geometry.Vector">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Vector" resolvedName="Autodesk.DesignScript.Geometry.Vector" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Color" resolvedName="DSCore.Color" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Point.Origin" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Line" resolvedName="Autodesk.DesignScript.Geometry.Line" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Cone" resolvedName="Autodesk.DesignScript.Geometry.Cone" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="c6344fe2-4444-45eb-83f8-591f8a21b914" type="Dynamo.Nodes.Symbol" nickname="Input" x="-321.447427869509" y="-56.4596824972825" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="startPoint : Point" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="a7fcd539-23e9-4722-b6dd-9e3b52511b5a" type="Dynamo.Nodes.Symbol" nickname="Input" x="-303.440710793797" y="142.495630021971" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="vector : Vector" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="9753c736-5960-4f03-bbcb-4e92bcc32a89" type="Dynamo.Nodes.Output" nickname="Output" x="1077.54223856152" y="-68.4016123502259" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="EndPoint" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="4c139945-a77c-4d79-8375-f1f19160adff" type="Dynamo.Nodes.Symbol" nickname="Input" x="-308.916569914963" y="320.534133282742" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="normalize : bool = false" />
+    </Dynamo.Nodes.Symbol>
+    <DSCoreNodesUI.CreateList guid="54232aa4-c54d-4f3c-9665-7c995ee4ca9a" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="901.69204902754" y="463.75104026567" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2" />
+    <Dynamo.Nodes.DSFunction guid="8e9be453-a200-4f0a-8f25-7ff3ec341ee7" type="Dynamo.Nodes.DSFunction" nickname="Vector.Length" x="883.39282047423" y="354.213831306005" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Vector.Length" />
+    <Dynamo.Nodes.DSFunction guid="fa4d9235-345b-4dff-a25e-82157b384218" type="Dynamo.Nodes.DSFunction" nickname="Vector.X" x="889.22595287093" y="83.2414443651936" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Vector.X" />
+    <Dynamo.Nodes.DSFunction guid="8c53b13c-94ce-462a-9ad6-2b0cceaf2b94" type="Dynamo.Nodes.DSFunction" nickname="Vector.Y" x="889.22595287093" y="169.386385266234" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Vector.Y" />
+    <Dynamo.Nodes.DSFunction guid="90a35afb-8718-4a20-9323-3a6bc17f6b5c" type="Dynamo.Nodes.DSFunction" nickname="Vector.Z" x="887.69997305784" y="260.872255513063" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Vector.Z" />
+    <Dynamo.Nodes.Output guid="2799811e-9b64-49fc-9b65-31d9721e1876" type="Dynamo.Nodes.Output" nickname="Output" x="1085.79983145516" y="3.68704731874091" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Vector" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="5988867f-3517-4aa4-903b-8a1e1176b733" type="Dynamo.Nodes.Output" nickname="Output" x="1081.58086166856" y="78.9549774578741" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="X" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="3996e617-ef13-468e-a9af-c5501e73258f" type="Dynamo.Nodes.Output" nickname="Output" x="1091.36854274727" y="180.690517035002" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Y" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="a8c2fe98-f000-4d53-859a-5325a8a97b59" type="Dynamo.Nodes.Output" nickname="Output" x="1080.75832312837" y="264.973749641397" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Z" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="a7a5a870-39a4-4a31-b9e2-2c14c7d86800" type="Dynamo.Nodes.Output" nickname="Output" x="1079.12247282759" y="353.167950883001" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Length" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="84f75194-1f79-4464-aa16-8f2ad4d4b4ce" type="Dynamo.Nodes.Output" nickname="Output" x="1085.62875363173" y="449.862548602231" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Visual" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="29fa7605-755b-48b6-81e2-542b795bf219" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="60.8087022035863" y="79.6375963388949" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="normalize;&#xA;len = normalize ? 1 : vec.Length;&#xA;line = Line.ByStartPointDirectionLength(pt, vec, len);&#xA;llen = line.Length;&#xA;coneStartPt = line.PointAtDistance(llen *8/10);&#xA;coneEndPt = line.EndPoint;&#xA;cone = Cone.ByPointsRadius(coneStartPt,coneEndPt, llen /20);&#xA;vecOut = normalize ? vec.Normalized() : vec;" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="c6344fe2-4444-45eb-83f8-591f8a21b914" start_index="0" end="29fa7605-755b-48b6-81e2-542b795bf219" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a7fcd539-23e9-4722-b6dd-9e3b52511b5a" start_index="0" end="29fa7605-755b-48b6-81e2-542b795bf219" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4c139945-a77c-4d79-8375-f1f19160adff" start_index="0" end="29fa7605-755b-48b6-81e2-542b795bf219" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="54232aa4-c54d-4f3c-9665-7c995ee4ca9a" start_index="0" end="84f75194-1f79-4464-aa16-8f2ad4d4b4ce" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8e9be453-a200-4f0a-8f25-7ff3ec341ee7" start_index="0" end="a7a5a870-39a4-4a31-b9e2-2c14c7d86800" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fa4d9235-345b-4dff-a25e-82157b384218" start_index="0" end="5988867f-3517-4aa4-903b-8a1e1176b733" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8c53b13c-94ce-462a-9ad6-2b0cceaf2b94" start_index="0" end="3996e617-ef13-468e-a9af-c5501e73258f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="90a35afb-8718-4a20-9323-3a6bc17f6b5c" start_index="0" end="a8c2fe98-f000-4d53-859a-5325a8a97b59" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="29fa7605-755b-48b6-81e2-542b795bf219" start_index="2" end="54232aa4-c54d-4f3c-9665-7c995ee4ca9a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="29fa7605-755b-48b6-81e2-542b795bf219" start_index="5" end="9753c736-5960-4f03-bbcb-4e92bcc32a89" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="29fa7605-755b-48b6-81e2-542b795bf219" start_index="6" end="54232aa4-c54d-4f3c-9665-7c995ee4ca9a" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="29fa7605-755b-48b6-81e2-542b795bf219" start_index="7" end="2799811e-9b64-49fc-9b65-31d9721e1876" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="29fa7605-755b-48b6-81e2-542b795bf219" start_index="7" end="fa4d9235-345b-4dff-a25e-82157b384218" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="29fa7605-755b-48b6-81e2-542b795bf219" start_index="7" end="8c53b13c-94ce-462a-9ad6-2b0cceaf2b94" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="29fa7605-755b-48b6-81e2-542b795bf219" start_index="7" end="90a35afb-8718-4a20-9323-3a6bc17f6b5c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="29fa7605-755b-48b6-81e2-542b795bf219" start_index="7" end="8e9be453-a200-4f0a-8f25-7ff3ec341ee7" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

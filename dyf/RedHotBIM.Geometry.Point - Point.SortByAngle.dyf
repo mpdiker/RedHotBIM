@@ -1,0 +1,91 @@
+<Workspace Version="0.8.2.2392" X="-453.6" Y="-83.2000000000002" zoom="1" Name="RHB Point.SortByAngle" Description="Sorts Points by Angle" ID="74e7033b-5e09-4e18-bae2-43e58a424ba1" Category="RedHotBIM.Geometry.Point">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Point.Origin" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="4185ced7-63de-4130-a2d8-32369c1089be" type="Dynamo.Nodes.Symbol" nickname="Input" x="515.2" y="244.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="pointList" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="8529669a-eb2d-4a9d-b71d-d870ab46a695" type="Dynamo.Nodes.Symbol" nickname="Input" x="512" y="316.133333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="listToBeOrdered" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="6fcac034-bf7f-4949-857d-e087ccd9b28a" type="Dynamo.Nodes.Symbol" nickname="Input" x="514.4" y="397.466666666667" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="originPoint : Point" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="43beffa6-92c7-4fea-85cf-a6a205c143ea" type="Dynamo.Nodes.Symbol" nickname="Input" x="515.2" y="491.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="clockWise : bool = true" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="ab7f9fae-9b4b-490c-8ff3-e340911f6d52" type="Dynamo.Nodes.Output" nickname="Output" x="1493.6" y="328.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="" />
+    </Dynamo.Nodes.Output>
+    <DSIronPythonNode.PythonNode guid="9c6024aa-022e-4439-bc86-43db7a21ef95" type="DSIronPythonNode.PythonNode" nickname="Py Order" x="903.6" y="393.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+clr.AddReference("RevitNodes")
+import Revit
+from Revit.Elements import *
+import math
+#The inputs to this node will be stored as a list in the IN variable.
+pts = UnwrapElement(IN[0])
+org = UnwrapElement(IN[1])
+ang = []
+		
+for p in pts:
+	if ((p.X == org.X) and (p.Y == org.Y)):
+		ang.insert(0,-1)
+		continue
+	if (p.Y - org.Y) == 0:
+		if (p.X - org.X) &gt; 0:
+			ang.append(0)
+		else:
+			ang.append(180)
+	if (p.X - org.X) == 0:
+		if (p.Y - org.Y) &gt; 0:
+			ang.append(90)
+		else:
+			ang.append(270)
+			
+	#01 ++
+	if (p.X - org.X) &gt; 0 and (p.Y - org.Y) &gt; 0:
+		ang.append(math.atan((p.Y - org.Y) / (p.X - org.X))*180/math.pi)
+	
+	#02 -+
+	if (p.X - org.X) &lt; 0 and (p.Y - org.Y) &gt; 0:
+		ang.append((math.atan((p.Y - org.Y) / (p.X - org.X))*180/math.pi)+180)
+		
+	#03 --
+	if (p.X - org.X) &lt; 0 and (p.Y - org.Y) &lt; 0:
+		ang.append((math.atan((p.Y - org.Y) / (p.X - org.X))*180/math.pi)+180)
+	
+	#04 +-
+	if (p.X - org.X) &gt; 0 and (p.Y - org.Y) &lt; 0:
+		ang.append((math.atan((p.Y - org.Y) / (p.X - org.X))*180/math.pi)+360)
+	
+#Assign your output to the OUT variable
+OUT = ang</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.DSFunction guid="917c0b42-d96e-4187-a945-c4497fb2f1bd" type="Dynamo.Nodes.DSFunction" nickname="SortIndexByValue" x="1099.6" y="464.4" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="SortIndexByValue@double[],bool" />
+    <Dynamo.Nodes.DSFunction guid="d80718e4-7d96-4208-a6f7-a097d67b143b" type="Dynamo.Nodes.DSFunction" nickname="Reorder" x="1331.6" y="322.8" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Reorder@var[],var[]" />
+    <Dynamo.Nodes.DSFunction guid="52a5f955-be1b-480f-a46f-94137b4ee447" type="Dynamo.Nodes.DSFunction" nickname="Not" x="861.6" y="498" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="Operators" function="Not@var[]..[]" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="4185ced7-63de-4130-a2d8-32369c1089be" start_index="0" end="9c6024aa-022e-4439-bc86-43db7a21ef95" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8529669a-eb2d-4a9d-b71d-d870ab46a695" start_index="0" end="d80718e4-7d96-4208-a6f7-a097d67b143b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="6fcac034-bf7f-4949-857d-e087ccd9b28a" start_index="0" end="9c6024aa-022e-4439-bc86-43db7a21ef95" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="43beffa6-92c7-4fea-85cf-a6a205c143ea" start_index="0" end="52a5f955-be1b-480f-a46f-94137b4ee447" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9c6024aa-022e-4439-bc86-43db7a21ef95" start_index="0" end="917c0b42-d96e-4187-a945-c4497fb2f1bd" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="917c0b42-d96e-4187-a945-c4497fb2f1bd" start_index="0" end="d80718e4-7d96-4208-a6f7-a097d67b143b" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d80718e4-7d96-4208-a6f7-a097d67b143b" start_index="0" end="ab7f9fae-9b4b-490c-8ff3-e340911f6d52" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="52a5f955-be1b-480f-a46f-94137b4ee447" start_index="0" end="917c0b42-d96e-4187-a945-c4497fb2f1bd" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="1.05406042951418" eyeY="15.3383589313385" eyeZ="-6.07429403505298" lookX="0.00205687868424729" lookY="-10.3866871495739" lookZ="0.0841621517366678" />
+  </Cameras>
+</Workspace>

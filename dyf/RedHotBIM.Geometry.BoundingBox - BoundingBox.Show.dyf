@@ -1,0 +1,43 @@
+<Workspace Version="0.8.2.2392" X="78.4392908194966" Y="45.2410520677777" zoom="0.789161032924816" Name="RHB BoundingBox.Show" Description="Shows the BoundingBox" ID="63d044f0-b68c-4293-920f-e61837e6531a" Category="RedHotBIM.Geometry.BoundingBox">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="BoundingBox" resolvedName="Autodesk.DesignScript.Geometry.BoundingBox" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Line" resolvedName="Autodesk.DesignScript.Geometry.Line" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="0d4aca0d-f8c6-4779-bb00-bf6bd0424290" type="Dynamo.Nodes.Symbol" nickname="Input" x="-90.0344213649853" y="178.803560830861" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="boundingBox : BoundingBox" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="75b3a182-4c95-4cec-bae6-5f34fdb60a5f" type="Dynamo.Nodes.Output" nickname="Output" x="1172.22077151335" y="146.340652818991" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Lines" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="f7ed84b6-3c44-4623-9530-09771dbdcd32" type="Dynamo.Nodes.Output" nickname="Output" x="1179.52047477745" y="216.785756676558" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="MaxPoint" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="95c8f290-3013-415e-870c-2dff0e83f594" type="Dynamo.Nodes.Output" nickname="Output" x="1183.31869436202" y="280.405934718101" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="MinPoint" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="d57a04a8-59bf-46dc-8817-492333964297" type="Dynamo.Nodes.Output" nickname="Output" x="1186.16735905045" y="370.613649851632" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="CoordinateSystem" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="7d9c1031-61ee-4f26-b4bd-9f412a1dda82" type="Dynamo.Nodes.DSFunction" nickname="BoundingBox.MaxPoint" x="788.121479178094" y="263.157761304131" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.BoundingBox.MaxPoint" />
+    <Dynamo.Nodes.DSFunction guid="458a467a-f9a4-4b12-9229-e1660964130c" type="Dynamo.Nodes.DSFunction" nickname="BoundingBox.MinPoint" x="788.121479178094" y="353.365476437662" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.BoundingBox.MinPoint" />
+    <Dynamo.Nodes.DSFunction guid="4000e94f-423f-4cbd-9f80-3436b9462ff4" type="Dynamo.Nodes.DSFunction" nickname="BoundingBox.ContextCoordinateSystem" x="702.521479178094" y="443.573191571193" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.BoundingBox.ContextCoordinateSystem" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="cb330033-1fb8-4ef1-927f-e9e020edf4e3" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="492.064679955906" y="136.185898265509" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="crvGeom = bb.ToCuboid().Edges.CurveGeometry;&#xA;ptStart = crvGeom.StartPoint;&#xA;ptEnd = crvGeom.EndPoint;&#xA;lines = Line.ByStartPointEndPoint(ptStart,ptEnd);" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="0d4aca0d-f8c6-4779-bb00-bf6bd0424290" start_index="0" end="7d9c1031-61ee-4f26-b4bd-9f412a1dda82" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="0d4aca0d-f8c6-4779-bb00-bf6bd0424290" start_index="0" end="458a467a-f9a4-4b12-9229-e1660964130c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="0d4aca0d-f8c6-4779-bb00-bf6bd0424290" start_index="0" end="4000e94f-423f-4cbd-9f80-3436b9462ff4" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="0d4aca0d-f8c6-4779-bb00-bf6bd0424290" start_index="0" end="cb330033-1fb8-4ef1-927f-e9e020edf4e3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7d9c1031-61ee-4f26-b4bd-9f412a1dda82" start_index="0" end="f7ed84b6-3c44-4623-9530-09771dbdcd32" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="458a467a-f9a4-4b12-9229-e1660964130c" start_index="0" end="95c8f290-3013-415e-870c-2dff0e83f594" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4000e94f-423f-4cbd-9f80-3436b9462ff4" start_index="0" end="d57a04a8-59bf-46dc-8817-492333964297" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="cb330033-1fb8-4ef1-927f-e9e020edf4e3" start_index="3" end="75b3a182-4c95-4cec-bae6-5f34fdb60a5f" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>
